@@ -1,0 +1,4 @@
+interface:
+  display_name: "Проверка оформления ВКР в LaTeX"
+  short_description: "Проверка LaTeX по презентации оформления ВКР"
+  default_prompt: "Используй $vkr-latex-check для проверки main.tex по требованиям презентации «Оформление ВКР 2025» и составь отчет с доказательствами."
