@@ -24,6 +24,7 @@ CLI предложит выбрать нужные скиллы. Если най
 ```bash
 npx skills add mezhendosina/skills-for-itmo-studying --skill vkr-latex-check
 npx skills add mezhendosina/skills-for-itmo-studying --skill fetch-telegram-messages
+npx skills add mezhendosina/skills-for-itmo-studying --skill fetch-itmo-schedule
 
 ```
 
@@ -40,6 +41,34 @@ npx skills add mezhendosina/skills-for-itmo-studying --agent codex --global
 | --- | --- | --- |
 | [`vkr-latex-check`](vkr-latex-check/) | Проверка LaTeX-проекта ВКР и собранного PDF по требованиям факультета прикладной информатики | Исходники TEX; для полной визуальной проверки — связанный с ними PDF и доступные PDF-инструменты |
 | [`fetch-telegram-messages`](fetch-telegram-messages/) | Получение новых входящих сообщений из папки Telegram `yeba` через пользовательский аккаунт | Python 3, Telethon, Telegram API ID и API hash, внешние файлы сессии и состояния |
+| [`fetch-itmo-schedule`](fetch-itmo-schedule/) | Получение личного расписания с my.itmo.ru (логин через ISU) в виде текста, JSON или .ics-файла | Python 3, логин и пароль от ИСУ |
+
+## Настройка `fetch-itmo-schedule`
+
+Логика логина и запроса расписания адаптирована из
+[`iburakov/my-itmo-ru-to-ical`](https://github.com/iburakov/my-itmo-ru-to-ical)
+(MIT). В отличие от оригинала скилл не поднимает свой сервер и не хранит
+сессию — при каждом запуске он заново логинится по логину/паролю из
+переменных окружения и ничего не пишет на диск, кроме `.ics`-файла (если он
+запрошен).
+
+```bash
+python3 -m venv /private/tmp/itmo-schedule-venv
+/private/tmp/itmo-schedule-venv/bin/pip install -r ~/.agents/skills/fetch-itmo-schedule/requirements.txt
+
+```
+
+Логин/пароль — те же, что и на `my.itmo.ru` (номер ИСУ и пароль). Задайте их
+как переменные окружения перед запуском и не сохраняйте их в репозитории:
+
+```zsh
+read -r -s 'ITMO_ISU_USERNAME?ISU username: '
+printf '\n'
+read -r -s 'ITMO_ISU_PASSWORD?ISU password: '
+printf '\n'
+export ITMO_ISU_USERNAME ITMO_ISU_PASSWORD
+
+```
 
 ## Настройка `fetch-telegram-messages`
 
