@@ -7,6 +7,7 @@
 | Предмет | Лаб | Таблица |
 | --- | --- | --- |
 | Мобильная разработка | 1 | [labs/mobile-development](mobile-development/) |
+| Тестирование ПО | 16 | [labs/software-testing](software-testing/) |
 
 ## Как добавить предмет
 
